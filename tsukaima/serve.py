@@ -9,7 +9,6 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse
 
 from tsukaima.model import Model
-from tsukaima.schema.model import Config
 from tsukaima.schema.openai import (
     ChatCompletionRequest,
     ChatCompletionResponse,
@@ -17,6 +16,7 @@ from tsukaima.schema.openai import (
     ChatMessage,
     UsageInfo,
 )
+from tsukaima.schema.schema import Config
 from tsukaima.streamer import chat_completion_stream_generator
 
 

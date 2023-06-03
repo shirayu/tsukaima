@@ -4,8 +4,8 @@ from typing import Final, Iterator
 
 from transformers import AutoModelForCausalLM, AutoTokenizer, TextIteratorStreamer
 
-from tsukaima.schema.model import Config
 from tsukaima.schema.openai import ChatCompletionRequest, ChatMessage
+from tsukaima.schema.schema import Config
 
 
 class Model:
