@@ -21,6 +21,10 @@ tsukaima --host 0.0.0.0 --port 6006 --config ./config.json
 
 <img src="https://user-images.githubusercontent.com/963961/243084955-0e3ee7db-d570-40f7-867a-6c9ec708588b.png" alt="Screenshot" width="400">
 
+## Specification
+
+- `role`が`system`のメッセージは無視します
+
 ## Setting file format
 
 TBA
