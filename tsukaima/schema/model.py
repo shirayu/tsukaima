@@ -35,13 +35,20 @@ class ConfigModel(BaseModel):
     tokenizer_kwargs: dict[str, Any]
 
 
+SUPPORTED_CONFIG_VERSION: Final[int] = 2
+
+
 class Config(BaseModel):
-    version: int = 1
+    version: int
     models: list[ConfigModel]
 
 
 class Model:
     def __init__(self, *, config: Config):
+        assert (
+            config.version == SUPPORTED_CONFIG_VERSION
+        ), f"Unsupported config version: {config.version}"
+
         self.name2model = {}
         self.name2tokenizer = {}
         self.name2config_model = {}
