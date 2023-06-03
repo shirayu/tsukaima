@@ -6,24 +6,23 @@
 [![CodeQL](https://github.com/shirayu/tsukaima/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/shirayu/tsukaima/actions/workflows/codeql-analysis.yml)
 [![Typos](https://github.com/shirayu/tsukaima/actions/workflows/typos.yml/badge.svg)](https://github.com/shirayu/tsukaima/actions/workflows/typos.yml)
 
-既存のOpenAI ChatGPTクライアントを使って[rinna LLM](https://huggingface.co/rinna/japanese-gpt-neox-3.6b-instruction-ppo)を呼ぶために作りました．
+At the moment this tool is intended to call [rinna LLM](https://huggingface.co/rinna/japanese-gpt-neox-3.6b-instruction-ppo) using the existing OpenAI ChatGPT clients
 
 ```bash
 pip install -U git+https://github.com/shirayu/tsukaima.git
 
-# 設定ファイルのダウンロード
 wget https://raw.githubusercontent.com/shirayu/tsukaima/main/config.example.json -O config.json
 
 tsukaima --host 0.0.0.0 --port 6006 --config ./config.json    
 ```
 
-[BetterChatGPT](https://github.com/ztjhz/BetterChatGPT)などのクライアントのAPIエンドポイントに``http://0.0.0.0:6006/v1/chat/completions``を指定してください
+Set API endpoint to the address (Eg: ``http://0.0.0.0:6006/v1/chat/completions``) to use ChatGPT clients such as [BetterChatGPT](https://github.com/ztjhz/BetterChatGPT).
 
 <img src="https://user-images.githubusercontent.com/963961/243087372-3fca7c13-4225-414f-9f72-e438f30bf661.png" alt="Screenshot" width="400">
 
 ## Specification
 
-- `role`が`system`のメッセージは無視します
+- Messages whose `role` is `system` will be ignored
 
 ## Setting file format
 
