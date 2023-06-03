@@ -12,7 +12,7 @@
 pip install -U git+https://github.com/shirayu/tsukaima.git
 
 # 設定ファイルのダウンロード
-wget https://github.com/shirayu/tsukaima/config.json
+wget https://raw.githubusercontent.com/shirayu/tsukaima/main/config.json 
 
 tsukaima --host 0.0.0.0 --port 6006 --config ./config.json    
 ```
@@ -20,6 +20,10 @@ tsukaima --host 0.0.0.0 --port 6006 --config ./config.json
 [BetterChatGPT](https://github.com/ztjhz/BetterChatGPT)などのクライアントのAPIエンドポイントに``http://0.0.0.0:6006/v1/chat/completions``を指定してください
 
 <img src="https://user-images.githubusercontent.com/963961/243084955-0e3ee7db-d570-40f7-867a-6c9ec708588b.png" alt="Screenshot" width="400">
+
+## Setting file format
+
+TBA
 
 ## Tips
 
