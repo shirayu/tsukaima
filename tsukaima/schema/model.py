@@ -31,8 +31,8 @@ class ConfigModel(BaseModel):
     path: str
     names: list[str]
     forced_parameters: dict[str, Any]
-    model_kwargs: dict[str, Any] = {}
-    tokenizer_kwargs: dict[str, Any] = {}
+    model_kwargs: dict[str, Any]
+    tokenizer_kwargs: dict[str, Any]
 
 
 class Config(BaseModel):
