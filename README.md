@@ -19,7 +19,7 @@ tsukaima --host 0.0.0.0 --port 6006 --config ./config.json
 
 [BetterChatGPT](https://github.com/ztjhz/BetterChatGPT)などのクライアントのAPIエンドポイントに``http://0.0.0.0:6006/v1/chat/completions``を指定してください
 
-<img src="https://user-images.githubusercontent.com/963961/243084955-0e3ee7db-d570-40f7-867a-6c9ec708588b.png" alt="Screenshot" width="400">
+<img src="https://user-images.githubusercontent.com/963961/243087372-3fca7c13-4225-414f-9f72-e438f30bf661.png" alt="Screenshot" width="400">
 
 ## Specification
 
