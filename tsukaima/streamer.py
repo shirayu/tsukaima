@@ -8,7 +8,7 @@ from typing import Any, AsyncGenerator, Iterator
 
 import shortuuid
 
-from tsukaima.schema.model import Model
+from tsukaima.model import Model
 from tsukaima.schema.openai import (
     ChatCompletionRequest,
     ChatCompletionResponseStreamChoice,

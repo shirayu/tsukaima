@@ -8,7 +8,8 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse
 
-from tsukaima.schema.model import Config, Model
+from tsukaima.model import Model
+from tsukaima.schema.model import Config
 from tsukaima.schema.openai import (
     ChatCompletionRequest,
     ChatCompletionResponse,
