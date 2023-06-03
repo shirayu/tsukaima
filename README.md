@@ -12,7 +12,7 @@
 pip install -U git+https://github.com/shirayu/tsukaima.git
 
 # 設定ファイルのダウンロード
-wget https://raw.githubusercontent.com/shirayu/tsukaima/main/config.json 
+wget https://raw.githubusercontent.com/shirayu/tsukaima/main/config.example.json -O config.json
 
 tsukaima --host 0.0.0.0 --port 6006 --config ./config.json    
 ```
