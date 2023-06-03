@@ -17,6 +17,10 @@ wget https://github.com/shirayu/tsukaima/config.json
 tsukaima --host 0.0.0.0 --port 6006 --config ./config.json    
 ```
 
+[BetterChatGPT](https://github.com/ztjhz/BetterChatGPT)などのクライアントのAPIエンドポイントに``http://0.0.0.0:6006/v1/chat/completions``を指定してください
+
+![Screenshot](https://github.com/shirayu/tsukaima/assets/963961/0e3ee7db-d570-40f7-867a-6c9ec708588b)
+
 ## Tips
 
 - You may need install [NCCL](https://developer.nvidia.com/nccl/nccl-download)
