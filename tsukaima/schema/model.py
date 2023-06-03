@@ -31,6 +31,8 @@ class ConfigModel(BaseModel):
     path: str
     names: list[str]
     forced_parameters: dict[str, Any]
+    model_kwargs: dict[str, Any] = {}
+    tokenizer_kwargs: dict[str, Any] = {}
 
 
 class Config(BaseModel):
@@ -48,13 +50,11 @@ class Model:
             tokenizer = AutoTokenizer.from_pretrained(
                 config_model.path,
                 use_fast=False,
+                **config_model.tokenizer_kwargs,
             )
             model = AutoModelForCausalLM.from_pretrained(
                 config_model.path,
-                #         device_map="auto",
-                device_map={"": 0},
-                #         load_in_4bit=True,
-                load_in_8bit=True,
+                **config_model.model_kwargs,
             )
             for _alt_name in config_model.names:
                 self.name2model[_alt_name] = model

@@ -1,10 +1,14 @@
 {
     "models": [
         {
+            "config_model.model_kwargs": {
+                "device_map": "auto",
+                "load_in_8bit": true
+            },
             "forced_parameters": {
-                "max_new_tokens":256,
-                "temperature": 0.7,
-                "repetition_penalty":1.1
+                "max_new_tokens": 256,
+                "repetition_penalty": 1.1,
+                "temperature": 0.7
             },
             "names": [
                 "gpt-3.5-turbo"
@@ -12,5 +16,5 @@
             "path": "rinna/japanese-gpt-neox-3.6b-instruction-ppo"
         }
     ],
-    "version": 1
+    "version": 2
 }
