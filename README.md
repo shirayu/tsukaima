@@ -27,7 +27,7 @@ tsukaima --host 0.0.0.0 --port 6006 --config ./config.json
 
 ## Setting file format
 
-TBA
+Please read [tsukaima.schema.schema](https://github.com/shirayu/tsukaima/blob/main/tsukaima/schema/schema.py)
 
 ## Tips
 
