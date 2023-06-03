@@ -13,7 +13,7 @@ pip install -U git+https://github.com/shirayu/tsukaima.git
 
 wget https://raw.githubusercontent.com/shirayu/tsukaima/main/config.example.json -O config.json
 
-tsukaima --host 0.0.0.0 --port 6006 --config ./config.json    
+tsukaima --host 0.0.0.0 --port 6006 --config ./config.json
 ```
 
 Set API endpoint to the address (Eg: ``http://0.0.0.0:6006/v1/chat/completions``) to use ChatGPT clients such as [BetterChatGPT](https://github.com/ztjhz/BetterChatGPT).
