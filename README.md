@@ -8,12 +8,14 @@
 
 At the moment this tool is intended to call [rinna LLM](https://huggingface.co/rinna/japanese-gpt-neox-3.6b-instruction-ppo) using the existing OpenAI ChatGPT clients
 
-```bash
-pip install -U git+https://github.com/shirayu/tsukaima.git
+## How to use
 
-wget https://raw.githubusercontent.com/shirayu/tsukaima/main/config.example.json -O config.json
-
-tsukaima --host 0.0.0.0 --port 6006 --config ./config.json
+```console
+$ python3 -m venv myvenv
+$ source myvenv/bin/activate
+(myvenv) $ pip install -U git+https://github.com/shirayu/tsukaima.git
+(myvenv) $ wget https://raw.githubusercontent.com/shirayu/tsukaima/main/config.example.json -O config.json
+(myvenv) $ tsukaima --host 0.0.0.0 --port 6006 --config ./config.json
 ```
 
 Set API endpoint to the address (Eg: ``http://0.0.0.0:6006/v1/chat/completions``) to use ChatGPT clients such as [BetterChatGPT](https://github.com/ztjhz/BetterChatGPT).
