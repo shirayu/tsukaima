@@ -11,7 +11,7 @@
     "dependencies": {},
     "devDependencies": {
         "markdownlint-cli": "^0.33.0",
-        "pyright": "^1.1.292"
+        "pyright": "^1.1.313"
     },
    "scripts": {
      "test": ""
