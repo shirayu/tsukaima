@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "tsukaima"
-version = "1.0.0"
+version = "1.0.1"
 description = ""
 authors = ["Yuta Hayashibe <yuta@hayashibe.jp>"]
 readme = "README.md"
