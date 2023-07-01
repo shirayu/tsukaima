@@ -51,13 +51,13 @@ trio = ["trio (<0.22)"]
 
 [[package]]
 name = "bitsandbytes"
-version = "0.39.0"
+version = "0.39.1"
 description = "k-bit optimizers and matrix multiplication routines."
 optional = false
 python-versions = "*"
 files = [
-    {file = "bitsandbytes-0.39.0-py3-none-any.whl", hash = "sha256:69e79cfce501cad5e34e9d785f5caf1768ead64f3e9f93b6bac1753e04dfa39a"},
-    {file = "bitsandbytes-0.39.0.tar.gz", hash = "sha256:b453dacf854e3624fe72b1306b1a6916de4a5edfd88fa01bf98ba73b2e3030d4"},
+    {file = "bitsandbytes-0.39.1-py3-none-any.whl", hash = "sha256:56b920472eb9cf6daead3b49fd24c8bd64a3c22a841d59e541515586f76b9abb"},
+    {file = "bitsandbytes-0.39.1.tar.gz", hash = "sha256:c5cf516341c48bd439ee1c675abed8b2f04cc5b269022440d08dce59ba5e5a0c"},
 ]
 
 [[package]]
@@ -1414,4 +1414,4 @@ standard = ["colorama (>=0.4)", "httptools (>=0.5.0)", "python-dotenv (>=0.13)",
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.10,<3.12"
-content-hash = "8363a4df661b967579c17fa78521b551cfbcbf67d573eb0bf6b026ffc24803a0"
+content-hash = "0d812a9fa31febe3b6309c2857cdf6a7fcb63373df8ae75d9313f2ea241b8bf9"
