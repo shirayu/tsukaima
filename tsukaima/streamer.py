@@ -52,7 +52,7 @@ async def chat_completion_stream_generator(
             choices=[choice_data],
             model=request.model,
         )
-        yield f"data: {chunk.json(exclude_unset=True, ensure_ascii=False)}\n\n"
+        yield f"data: {chunk.json(exclude_unset=True)}\n\n"
 
         previous_text = ""
         for content in chat_completion_stream(
@@ -60,7 +60,7 @@ async def chat_completion_stream_generator(
             request=request,
         ):
             if content["error_code"] != 0:
-                yield f"data: {json.dumps(content, ensure_ascii=False)}\n\n"
+                yield f"data: {json.dumps(content)}\n\n"
                 yield "data: [DONE]\n\n"
                 return
             decoded_unicode = content["text"].replace("\ufffd", "")
@@ -81,8 +81,8 @@ async def chat_completion_stream_generator(
                 if content.get("finish_reason", None) is not None:
                     finish_stream_events.append(chunk)
                 continue
-            yield f"data: {chunk.json(exclude_unset=True, ensure_ascii=False)}\n\n"
+            yield f"data: {chunk.json(exclude_unset=True)}\n\n"
     # There is not "content" field in the last delta message, so exclude_none to exclude field "content".
     for finish_chunk in finish_stream_events:
-        yield f"data: {finish_chunk.json(exclude_none=True, ensure_ascii=False)}\n\n"
+        yield f"data: {finish_chunk.json(exclude_none=True)}\n\n"
     yield "data: [DONE]\n\n"
