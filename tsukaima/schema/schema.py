@@ -10,6 +10,7 @@ class ConfigModel(BaseModel):
     forced_parameters: dict[str, Any]
     model_kwargs: dict[str, Any]
     tokenizer_kwargs: dict[str, Any]
+    enabled: bool = True
 
 
 class Config(BaseModel):

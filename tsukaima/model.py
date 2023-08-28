@@ -5,7 +5,7 @@ from typing import Final, Iterator
 from transformers import AutoModelForCausalLM, AutoTokenizer, TextIteratorStreamer
 
 from tsukaima.schema.openai import ChatCompletionRequest, ChatMessage
-from tsukaima.schema.schema import Config
+from tsukaima.schema.schema import Config, ConfigModel
 
 
 class Model:
@@ -29,6 +29,18 @@ class Model:
         prompt += f"{Model.rinna_speaker_name_system}: "
         return prompt
 
+    @staticmethod
+    def get_prompt(
+        *,
+        model_name: str,
+        messages: list[ChatMessage],
+    ) -> str:
+        if model_name.startswith("rinna/"):
+            return Model.get_rinna_prompt(
+                messages=messages,
+            )
+        raise KeyError
+
     def __init__(self, *, config: Config):
         assert (
             config.version == Model.supported_config_version
@@ -39,6 +51,8 @@ class Model:
         self.name2config_model = {}
 
         for config_model in config.models:
+            if not config_model.enabled:
+                continue
             tokenizer = AutoTokenizer.from_pretrained(
                 config_model.path,
                 use_fast=False,
@@ -61,13 +75,14 @@ class Model:
         model_name: str = request.model
         tokenizer = self.name2tokenizer[model_name]
         model = self.name2model[model_name]
-        config_model = self.name2config_model[model_name]
+        config_model: ConfigModel = self.name2config_model[model_name]
 
         messages = []
         assert isinstance(request.messages, list)
         for _msg in request.messages:
             messages.append(ChatMessage.parse_obj(_msg))
-        prompt: str = Model.get_rinna_prompt(
+        prompt: str = Model.get_prompt(
+            model_name=config_model.path,
             messages=messages,
         )
 
