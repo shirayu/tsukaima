@@ -10,23 +10,41 @@ from tsukaima.schema.schema import Config, ConfigModel
 
 class Model:
     supported_config_version: Final[int] = 2
-    rinna_speaker_name_system: Final[str] = "システム"
 
     @staticmethod
     def get_rinna_prompt(
         *,
         messages: list[ChatMessage],
     ) -> str:
+        rinna_speaker_name_system: Final[str] = "システム"
         prompt: str = ""
         for uttr in messages:
             if uttr.role == "system":
                 continue
             my_role: str = {
                 "user": "ユーザー",
-                "assistant": Model.rinna_speaker_name_system,
+                "assistant": rinna_speaker_name_system,
             }[uttr.role]
             prompt += f"{my_role}: {uttr.content}<NL>"
-        prompt += f"{Model.rinna_speaker_name_system}: "
+        prompt += f"{rinna_speaker_name_system}: "
+        return prompt
+
+    @staticmethod
+    def get_line_prompt(
+        *,
+        messages: list[ChatMessage],
+    ) -> str:
+        line_speaker_name_system: Final[str] = "システム"
+        prompt: str = ""
+        for uttr in messages:
+            if uttr.role == "system":
+                continue
+            my_role: str = {
+                "user": "ユーザー",
+                "assistant": line_speaker_name_system,
+            }[uttr.role]
+            prompt += f"{my_role}: {uttr.content}\n"
+        prompt += f"{line_speaker_name_system}: "
         return prompt
 
     @staticmethod
@@ -39,7 +57,11 @@ class Model:
             return Model.get_rinna_prompt(
                 messages=messages,
             )
-        raise KeyError
+        elif model_name.startswith("line-corporation/"):
+            return Model.get_line_prompt(
+                messages=messages,
+            )
+        raise KeyError(f"Unsupported model: {model_name}")
 
     def __init__(self, *, config: Config):
         assert (

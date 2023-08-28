@@ -1,0 +1,21 @@
+{
+    "models": [
+        {
+            "forced_parameters": {
+                "max_new_tokens": 256,
+                "repetition_penalty": 1.1,
+                "temperature": 0.7
+            },
+            "model_kwargs": {
+                "device_map": "auto",
+                "load_in_8bit": true
+            },
+            "names": [
+                "gpt-3.5-turbo"
+            ],
+            "path": "line-corporation/japanese-large-lm-3.6b-instruction-sft",
+            "tokenizer_kwargs": {}
+        }
+    ],
+    "version": 2
+}
