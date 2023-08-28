@@ -14,8 +14,8 @@ At the moment this tool is intended to call [rinna LLM](https://huggingface.co/r
 $ python3 -m venv myvenv
 $ source myvenv/bin/activate
 (myvenv) $ pip install -U git+https://github.com/shirayu/tsukaima.git
-(myvenv) $ wget https://raw.githubusercontent.com/shirayu/tsukaima/main/config.example.json -O config.json
-(myvenv) $ tsukaima --host 0.0.0.0 --port 6006 --config ./config.json
+(myvenv) $ wget https://raw.githubusercontent.com/shirayu/tsukaima/main/examples_config/rinna.json -O rinna.json
+(myvenv) $ tsukaima --host 0.0.0.0 --port 6006 --config ./rinna.json
 ```
 
 Set API endpoint to the address (Eg: ``http://0.0.0.0:6006/v1/chat/completions``) to use ChatGPT clients such as [BetterChatGPT](https://github.com/ztjhz/BetterChatGPT).
