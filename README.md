@@ -6,7 +6,11 @@
 [![CodeQL](https://github.com/shirayu/tsukaima/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/shirayu/tsukaima/actions/workflows/codeql-analysis.yml)
 [![Typos](https://github.com/shirayu/tsukaima/actions/workflows/typos.yml/badge.svg)](https://github.com/shirayu/tsukaima/actions/workflows/typos.yml)
 
-At the moment this tool is intended to call [rinna LLM](https://huggingface.co/rinna/japanese-gpt-neox-3.6b-instruction-ppo) using the existing OpenAI ChatGPT clients
+Tsukaima is a tool to call local large language models (LLMs) using the existing OpenAI ChatGPT clients.
+Currently, the following models are supported.
+
+- [rinna LLM](https://huggingface.co/rinna/japanese-gpt-neox-3.6b-instruction-ppo)
+- [line-corporation/japanese-large-lm-3.6b-instruction-sft](https://huggingface.co/line-corporation/japanese-large-lm-3.6b-instruction-sft)
 
 ## How to use
 
@@ -21,6 +25,8 @@ $ source myvenv/bin/activate
 Set API endpoint to the address (Eg: ``http://0.0.0.0:6006/v1/chat/completions``) to use ChatGPT clients such as [BetterChatGPT](https://github.com/ztjhz/BetterChatGPT).
 
 <img src="https://user-images.githubusercontent.com/963961/243087372-3fca7c13-4225-414f-9f72-e438f30bf661.png" alt="Screenshot" width="400">
+
+Check [other config examples](https://github.com/shirayu/tsukaima/tree/main/examples_config).
 
 ## Specification
 
