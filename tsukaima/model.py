@@ -3,7 +3,6 @@ from threading import Thread
 from typing import Final, Iterator
 
 from transformers import AutoModelForCausalLM, AutoTokenizer, TextIteratorStreamer
-from transformers.models.mega.modeling_mega import MegaClassificationHead
 
 from tsukaima.schema.openai import ChatCompletionRequest, ChatMessage
 from tsukaima.schema.schema import Config, ConfigModel
