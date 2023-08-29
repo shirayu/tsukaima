@@ -11,6 +11,7 @@ Currently, the following models are supported.
 
 - [rinna LLM](https://huggingface.co/rinna/japanese-gpt-neox-3.6b-instruction-ppo)
 - [line-corporation/japanese-large-lm-3.6b-instruction-sft](https://huggingface.co/line-corporation/japanese-large-lm-3.6b-instruction-sft)
+- [elyza/ELYZA-japanese-Llama-2-7b-instruct](https://huggingface.co/elyza/ELYZA-japanese-Llama-2-7b-instruct)
 
 ## How to use
 

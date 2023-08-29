@@ -1,0 +1,20 @@
+{
+    "models": [
+        {
+            "forced_parameters": {
+                "max_new_tokens": 1024,
+                "repetition_penalty": 1.2
+            },
+            "model_kwargs": {
+                "device_map": "auto",
+                "load_in_8bit": true
+            },
+            "names": [
+                "gpt-3.5-turbo"
+            ],
+            "path": "elyza/ELYZA-japanese-Llama-2-7b-instruct" , 
+            "tokenizer_kwargs": {}
+        }
+    ],
+    "version": 2
+}

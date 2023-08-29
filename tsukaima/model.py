@@ -3,6 +3,7 @@ from threading import Thread
 from typing import Final, Iterator
 
 from transformers import AutoModelForCausalLM, AutoTokenizer, TextIteratorStreamer
+from transformers.models.mega.modeling_mega import MegaClassificationHead
 
 from tsukaima.schema.openai import ChatCompletionRequest, ChatMessage
 from tsukaima.schema.schema import Config, ConfigModel
@@ -48,6 +49,51 @@ class Model:
         return prompt
 
     @staticmethod
+    def get_elyza_prompt(
+        *,
+        messages: list[ChatMessage],
+    ) -> str:
+        prev_role: str = "system"
+        user_contents: list[str] = []
+        assistant_contents: list[str] = []
+
+        for uttr in messages:
+            if uttr.role == "system":
+                pass
+            elif uttr.role == "user":
+                if prev_role == "user":
+                    user_contents[-1] += f"\n{uttr.content}"
+                elif prev_role in {"assistant", "system"}:
+                    user_contents.append(uttr.content)
+                else:
+                    raise NotImplementedError(f"Unsupported prev_role: {prev_role}")
+
+            elif uttr.role == "assistant":
+                if prev_role in {"user", "system"}:
+                    assistant_contents.append(uttr.content)
+                elif prev_role == "assistant":
+                    assistant_contents[-1] += f"\n{uttr.content}"
+                else:
+                    raise NotImplementedError(f"Unsupported prev_role: {prev_role}")
+
+            else:
+                raise KeyError(uttr.role)
+            prev_role = uttr.role
+
+        bos_token: Final[str] = "<s>"
+        eos_token: Final[str] = "</s>"
+        default_system_prompt: Final[str] = "あなたは誠実で優秀な日本人のアシスタントです。"
+        prompt: str = (
+            f"{bos_token}[INST] <<SYS>>\n{default_system_prompt}\n<</SYS>>\n\n"
+        )
+        assert len(user_contents) == len(assistant_contents) + 1
+        for user_input, assistant_resp in zip(user_contents, assistant_contents):
+            prompt += f"{user_input} [/INST] {assistant_resp.strip()} {eos_token}{bos_token}[INST] "
+
+        prompt += f"{user_contents[-1]} [/INST]"
+        return prompt
+
+    @staticmethod
     def get_prompt(
         *,
         model_name: str,
@@ -61,6 +107,11 @@ class Model:
             return Model.get_line_prompt(
                 messages=messages,
             )
+        elif model_name.startswith("elyza/"):
+            return Model.get_elyza_prompt(
+                messages=messages,
+            )
+
         raise KeyError(f"Unsupported model: {model_name}")
 
     def __init__(self, *, config: Config):
@@ -127,7 +178,7 @@ class Model:
             bos_token_id=tokenizer.bos_token_id,
             eos_token_id=tokenizer.eos_token_id,
             repetition_penalty=config_model.forced_parameters.get(
-                "repetition_penalty", request.presence_penalty
+                "repetition_penalty", request.frequency_penalty
             ),
         )
 
