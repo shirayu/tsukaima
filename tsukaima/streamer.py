@@ -7,6 +7,7 @@ import json
 from typing import Any, AsyncGenerator, Iterator
 
 import shortuuid
+from fastapi import Request
 
 from tsukaima.model import Model
 from tsukaima.schema.openai import (
@@ -37,6 +38,7 @@ async def chat_completion_stream_generator(
     *,
     model: Model,
     request: ChatCompletionRequest,
+    raw_request: Request,
 ) -> AsyncGenerator[str, Any]:
     id = f"chatcmpl-{shortuuid.random()}"
     finish_stream_events = []
@@ -59,7 +61,7 @@ async def chat_completion_stream_generator(
             model=model,
             request=request,
         ):
-            if content["error_code"] != 0:
+            if content["error_code"] != 0 or await raw_request.is_disconnected():
                 yield f"data: {json.dumps(content)}\n\n"
                 yield "data: [DONE]\n\n"
                 return

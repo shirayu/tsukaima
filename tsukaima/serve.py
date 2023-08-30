@@ -4,7 +4,7 @@ import json
 from pathlib import Path
 
 import uvicorn
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse
 
@@ -28,11 +28,15 @@ def get_app(config: Config):
     )
 
     @app.post("/v1/chat/completions")
-    async def chat_completions(request: ChatCompletionRequest):
-        if request.stream:
+    async def chat_completions(
+        req: ChatCompletionRequest,
+        request: Request,
+    ):
+        if req.stream:
             generator = chat_completion_stream_generator(
                 model=model,
-                request=request,
+                request=req,
+                raw_request=request,
             )
             return StreamingResponse(generator, media_type="text/event-stream")
 
@@ -42,7 +46,7 @@ def get_app(config: Config):
             [
                 text
                 for text in model.generate(
-                    request=request,
+                    request=req,
                 )
             ]
         )
@@ -55,7 +59,7 @@ def get_app(config: Config):
             )
         )
         return ChatCompletionResponse(
-            model=request.model,
+            model=req.model,
             choices=choices,
             usage=usage,
         )
