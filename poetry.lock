@@ -316,16 +316,17 @@ test = ["pytest (>=6)"]
 
 [[package]]
 name = "fastapi"
-version = "0.103.0"
+version = "0.103.1"
 description = "FastAPI framework, high performance, easy to learn, fast to code, ready for production"
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "fastapi-0.103.0-py3-none-any.whl", hash = "sha256:61ab72c6c281205dd0cbaccf503e829a37e0be108d965ac223779a8479243665"},
-    {file = "fastapi-0.103.0.tar.gz", hash = "sha256:4166732f5ddf61c33e9fa4664f73780872511e0598d4d5434b1816dc1e6d9421"},
+    {file = "fastapi-0.103.1-py3-none-any.whl", hash = "sha256:5e5f17e826dbd9e9b5a5145976c5cd90bcaa61f2bf9a69aca423f2bcebe44d83"},
+    {file = "fastapi-0.103.1.tar.gz", hash = "sha256:345844e6a82062f06a096684196aaf96c1198b25c06b72c1311b882aa2d8a35d"},
 ]
 
 [package.dependencies]
+anyio = ">=3.7.1,<4.0.0"
 pydantic = ">=1.7.4,<1.8 || >1.8,<1.8.1 || >1.8.1,<2.0.0 || >2.0.0,<2.0.1 || >2.0.1,<2.1.0 || >2.1.0,<3.0.0"
 starlette = ">=0.27.0,<0.28.0"
 typing-extensions = ">=4.5.0"
@@ -335,18 +336,21 @@ all = ["email-validator (>=2.0.0)", "httpx (>=0.23.0)", "itsdangerous (>=1.1.0)"
 
 [[package]]
 name = "filelock"
-version = "3.12.2"
+version = "3.12.3"
 description = "A platform independent file lock."
 optional = false
-python-versions = ">=3.7"
+python-versions = ">=3.8"
 files = [
-    {file = "filelock-3.12.2-py3-none-any.whl", hash = "sha256:cbb791cdea2a72f23da6ac5b5269ab0a0d161e9ef0100e653b69049a7706d1ec"},
-    {file = "filelock-3.12.2.tar.gz", hash = "sha256:002740518d8aa59a26b0c76e10fb8c6e15eae825d34b6fdf670333fd7b938d81"},
+    {file = "filelock-3.12.3-py3-none-any.whl", hash = "sha256:f067e40ccc40f2b48395a80fcbd4728262fab54e232e090a4063ab804179efeb"},
+    {file = "filelock-3.12.3.tar.gz", hash = "sha256:0ecc1dd2ec4672a10c8550a8182f1bd0c0a5088470ecd5a125e45f49472fac3d"},
 ]
 
+[package.dependencies]
+typing-extensions = {version = ">=4.7.1", markers = "python_version < \"3.11\""}
+
 [package.extras]
-docs = ["furo (>=2023.5.20)", "sphinx (>=7.0.1)", "sphinx-autodoc-typehints (>=1.23,!=1.23.4)"]
-testing = ["covdefaults (>=2.3)", "coverage (>=7.2.7)", "diff-cover (>=7.5)", "pytest (>=7.3.1)", "pytest-cov (>=4.1)", "pytest-mock (>=3.10)", "pytest-timeout (>=2.1)"]
+docs = ["furo (>=2023.7.26)", "sphinx (>=7.1.2)", "sphinx-autodoc-typehints (>=1.24)"]
+testing = ["covdefaults (>=2.3)", "coverage (>=7.3)", "diff-cover (>=7.7)", "pytest (>=7.4)", "pytest-cov (>=4.1)", "pytest-mock (>=3.11.1)", "pytest-timeout (>=2.1)"]
 
 [[package]]
 name = "flake8"
@@ -366,13 +370,13 @@ pyflakes = ">=3.1.0,<3.2.0"
 
 [[package]]
 name = "fsspec"
-version = "2023.6.0"
+version = "2023.9.0"
 description = "File-system specification"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "fsspec-2023.6.0-py3-none-any.whl", hash = "sha256:1cbad1faef3e391fba6dc005ae9b5bdcbf43005c9167ce78c915549c352c869a"},
-    {file = "fsspec-2023.6.0.tar.gz", hash = "sha256:d0b2f935446169753e7a5c5c55681c54ea91996cc67be93c39a154fb3a2742af"},
+    {file = "fsspec-2023.9.0-py3-none-any.whl", hash = "sha256:d55b9ab2a4c1f2b759888ae9f93e40c2aa72c0808132e87e282b549f9e6c4254"},
+    {file = "fsspec-2023.9.0.tar.gz", hash = "sha256:4dbf0fefee035b7c6d3bbbe6bc99b2f201f40d4dca95b67c2b719be77bcd917f"},
 ]
 
 [package.extras]
@@ -1387,13 +1391,13 @@ telegram = ["requests"]
 
 [[package]]
 name = "transformers"
-version = "4.32.0"
+version = "4.32.1"
 description = "State-of-the-art Machine Learning for JAX, PyTorch and TensorFlow"
 optional = false
 python-versions = ">=3.8.0"
 files = [
-    {file = "transformers-4.32.0-py3-none-any.whl", hash = "sha256:32d8adf0ed76285508e7fd66657b4448ec1f882599ae6bf6f9c36bd7bf798402"},
-    {file = "transformers-4.32.0.tar.gz", hash = "sha256:ca510f9688d2fe7347abbbfbd13f2f6dcd3c8349870c8d0ed98beed5f579b354"},
+    {file = "transformers-4.32.1-py3-none-any.whl", hash = "sha256:b930d3dbd907a3f300cf49e54d63a56f8a0ab16b01a2c2a61ecff37c6de1da08"},
+    {file = "transformers-4.32.1.tar.gz", hash = "sha256:1edc8ae1de357d97c3d36b04412aa63d55e6fc0c4b39b419a7d380ed947d2252"},
 ]
 
 [package.dependencies]
