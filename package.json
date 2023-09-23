@@ -6,7 +6,7 @@
     "name": "pyright-exec",
     "scripts": {
         "preinstall": "npx only-allow pnpm",
-        "test": ""
+        "test": ":"
     },
     "version": "1.0.0",
     "devDependencies": {
