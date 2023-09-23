@@ -5,15 +5,12 @@
     "main": "",
     "name": "pyright-exec",
     "scripts": {
-        "pyright": "pyright"
+        "preinstall": "npx only-allow pnpm",
+        "test": ""
     },
     "version": "1.0.0",
-    "dependencies": {},
     "devDependencies": {
         "markdownlint-cli": "^0.35.0",
-        "pyright": "^1.1.313"
-    },
-   "scripts": {
-     "test": ""
+        "pyright": "^1.1.328"
     }
 }
