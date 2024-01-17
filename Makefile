@@ -5,18 +5,15 @@ all: lint_node lint_python
 
 TARGET_DIRS:=./tsukaima
 
-flake8:
-	find $(TARGET_DIRS) | grep '\.py$$' | xargs flake8
-black:
-	find $(TARGET_DIRS) | grep '\.py$$' | xargs black --diff | python ./tests/check_null.py
-isort:
-	find $(TARGET_DIRS) | grep '\.py$$' | xargs isort --diff | python ./tests/check_null.py
-	
+ruff:
+	ruff format --respect-gitignore --check
+	ruff --respect-gitignore
+
 yamllint:
 	find . \( -name node_modules -o -name .venv \) -prune -o -type f -name '*.yml' -print \
 		| xargs yamllint --no-warnings
 
-lint_python: flake8 black isort
+lint_python: ruff
 
 
 pyright:

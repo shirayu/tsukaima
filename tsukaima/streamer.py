@@ -4,7 +4,8 @@
 # https://github.com/lm-sys/FastChat
 
 import json
-from typing import Any, AsyncGenerator, Iterator
+from collections.abc import AsyncGenerator, Iterator
+from typing import Any
 
 import shortuuid
 from fastapi import Request
@@ -76,9 +77,7 @@ async def chat_completion_stream_generator(
                 delta=DeltaMessage(content=delta_text),
                 finish_reason=content.get("finish_reason", None),
             )
-            chunk = ChatCompletionStreamResponse(
-                id=id, choices=[choice_data], model=request.model
-            )
+            chunk = ChatCompletionStreamResponse(id=id, choices=[choice_data], model=request.model)
             if delta_text is None:
                 if content.get("finish_reason", None) is not None:
                     finish_stream_events.append(chunk)

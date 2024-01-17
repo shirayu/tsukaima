@@ -4,7 +4,7 @@
 # https://github.com/lm-sys/FastChat
 
 import time
-from typing import Literal, Optional, Union
+from typing import Literal
 
 import shortuuid
 from pydantic import BaseModel, Field
@@ -18,16 +18,16 @@ class ErrorResponse(BaseModel):
 
 class ChatCompletionRequest(BaseModel):
     model: str
-    messages: Union[str, list[dict[str, str]]]
-    temperature: Optional[float] = 0.7
-    top_p: Optional[float] = 1.0
-    n: Optional[int] = 1
-    max_tokens: Optional[int] = None
-    stop: Optional[Union[str, list[str]]] = None
-    stream: Optional[bool] = False
-    presence_penalty: Optional[float] = 0.0
-    frequency_penalty: Optional[float] = 0.0
-    user: Optional[str] = None
+    messages: str | list[dict[str, str]]
+    temperature: float | None = 0.7
+    top_p: float | None = 1.0
+    n: int | None = 1
+    max_tokens: int | None = None
+    stop: str | list[str] | None = None
+    stream: bool | None = False
+    presence_penalty: float | None = 0.0
+    frequency_penalty: float | None = 0.0
+    user: str | None = None
 
 
 class ChatMessage(BaseModel):
@@ -38,13 +38,13 @@ class ChatMessage(BaseModel):
 class ChatCompletionResponseChoice(BaseModel):
     index: int
     message: ChatMessage
-    finish_reason: Optional[Literal["stop", "length"]]
+    finish_reason: Literal["stop", "length"] | None
 
 
 class UsageInfo(BaseModel):
     prompt_tokens: int = 0
     total_tokens: int = 0
-    completion_tokens: Optional[int] = 0
+    completion_tokens: int | None = 0
 
 
 class ChatCompletionResponse(BaseModel):
@@ -57,14 +57,14 @@ class ChatCompletionResponse(BaseModel):
 
 
 class DeltaMessage(BaseModel):
-    role: Optional[str] = None
-    content: Optional[str] = None
+    role: str | None = None
+    content: str | None = None
 
 
 class ChatCompletionResponseStreamChoice(BaseModel):
     index: int
     delta: DeltaMessage
-    finish_reason: Optional[Literal["stop", "length"]]
+    finish_reason: Literal["stop", "length"] | None
 
 
 class ChatCompletionStreamResponse(BaseModel):

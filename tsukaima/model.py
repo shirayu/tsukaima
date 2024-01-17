@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
+from collections.abc import Iterator
 from threading import Thread
-from typing import Final, Iterator
+from typing import Final
 
 from transformers import AutoModelForCausalLM, AutoTokenizer, TextIteratorStreamer
 
@@ -82,11 +83,9 @@ class Model:
         bos_token: Final[str] = "<s>"
         eos_token: Final[str] = "</s>"
         default_system_prompt: Final[str] = "あなたは誠実で優秀な日本人のアシスタントです。"
-        prompt: str = (
-            f"{bos_token}[INST] <<SYS>>\n{default_system_prompt}\n<</SYS>>\n\n"
-        )
+        prompt: str = f"{bos_token}[INST] <<SYS>>\n{default_system_prompt}\n<</SYS>>\n\n"
         assert len(user_contents) == len(assistant_contents) + 1
-        for user_input, assistant_resp in zip(user_contents, assistant_contents):
+        for user_input, assistant_resp in zip(user_contents, assistant_contents, strict=False):
             prompt += f"{user_input} [/INST] {assistant_resp.strip()} {eos_token}{bos_token}[INST] "
 
         prompt += f"{user_contents[-1]} [/INST]"
@@ -114,9 +113,7 @@ class Model:
         raise KeyError(f"Unsupported model: {model_name}")
 
     def __init__(self, *, config: Config):
-        assert (
-            config.version == Model.supported_config_version
-        ), f"Unsupported config version: {config.version}"
+        assert config.version == Model.supported_config_version, f"Unsupported config version: {config.version}"
 
         self.name2model = {}
         self.name2tokenizer = {}
@@ -158,9 +155,7 @@ class Model:
             messages=messages,
         )
 
-        token_ids = tokenizer.encode(
-            prompt, add_special_tokens=False, return_tensors="pt"
-        )
+        token_ids = tokenizer.encode(prompt, add_special_tokens=False, return_tensors="pt")
         streamer = TextIteratorStreamer(tokenizer, skip_prompt=True)
 
         generation_args = [token_ids.to(model.device)]
@@ -168,17 +163,14 @@ class Model:
             streamer=streamer,
             do_sample=True,
             max_new_tokens=config_model.forced_parameters.get(
-                "max_new_tokens", 256  # FIXME
+                "max_new_tokens",
+                256,  # FIXME
             ),
-            temperature=config_model.forced_parameters.get(
-                "temperature", request.temperature
-            ),
+            temperature=config_model.forced_parameters.get("temperature", request.temperature),
             pad_token_id=tokenizer.pad_token_id,
             bos_token_id=tokenizer.bos_token_id,
             eos_token_id=tokenizer.eos_token_id,
-            repetition_penalty=config_model.forced_parameters.get(
-                "repetition_penalty", request.frequency_penalty
-            ),
+            repetition_penalty=config_model.forced_parameters.get("repetition_penalty", request.frequency_penalty),
         )
 
         thread = Thread(
