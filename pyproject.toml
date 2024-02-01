@@ -25,7 +25,7 @@ protobuf = "^4.24.2"
 tsukaima = "tsukaima.serve:main"
 
 [tool.poetry.group.dev.dependencies]
-ruff = "^0.1.13"
+ruff = "^0.1.15"
 
 [build-system]
 requires = ["poetry-core"]
